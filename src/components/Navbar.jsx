@@ -145,8 +145,17 @@ const Navbar = () => {
         .admin-link:hover { color: var(--accent-red); }
         .logout-btn { background: rgba(229, 9, 20, 0.1); color: var(--accent-red); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition-fast); }
         .logout-btn:hover { background: var(--accent-red); color: var(--text-primary); }
-        .nav-mobile-toggle { display: none; color: var(--text-primary); cursor: pointer; }
-        @media (max-width: 900px) { .nav-mobile-toggle { display: block; } }
+        .nav-mobile-toggle { display: none; color: var(--text-primary); cursor: pointer; align-items: center; }
+        @media (max-width: 900px) { .nav-mobile-toggle { display: flex; } }
+        /* tighter, balanced navbar on phones/small screens */
+        @media (max-width: 600px) {
+          .nav-logo-img { height: 46px; }
+          .nav-container { padding: 0; }
+          .container.nav-container { padding: 0 1rem; }
+        }
+        @media (max-width: 380px) {
+          .nav-logo-img { height: 40px; }
+        }
         .nav-overlay-mobile { position: fixed; top: 80px; left: 0; right: 0; bottom: 0; background: var(--bg-primary); z-index: 99; transform: translateY(-100%); opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; padding: 2rem; }
         .nav-overlay-mobile.open { transform: translateY(0); opacity: 1; visibility: visible; }
         .mobile-links { display: flex; flex-direction: column; gap: 1.8rem; }
