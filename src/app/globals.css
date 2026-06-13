@@ -1,0 +1,269 @@
+/* ==========================================================================
+   HELL ENERGY Clone - Core Design System & CSS Stylesheet
+   ========================================================================== */
+
+/* 1. Global Custom Properties */
+:root {
+  /* Color Palette */
+  --bg-primary: #0b0c10;
+  --bg-secondary: #12141c;
+  --bg-tertiary: #1a1d29;
+  
+  --accent-red: #e50914;
+  --accent-red-hover: #ff1f29;
+  --accent-red-glow: rgba(229, 9, 20, 0.4);
+  
+  --accent-green: #39ff14;
+  --accent-green-glow: rgba(57, 255, 20, 0.3);
+  
+  --accent-gold: #c5a059;
+  --accent-gold-glow: rgba(197, 160, 89, 0.3);
+  
+  --text-primary: #ffffff;
+  --text-secondary: #a9b2c3;
+  --text-muted: #626e85;
+  
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color-hover: rgba(229, 9, 20, 0.3);
+
+  /* Fonts */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Layout and Effects */
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  --glass-bg: rgba(18, 20, 28, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-shadow: rgba(0, 0, 0, 0.5);
+  
+  --card-radius: 16px;
+  --button-radius: 50px;
+}
+
+/* 2. Resets & Core Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+/* Neon Red Underline for Section Headers */
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 60px;
+  height: 4px;
+  background-color: var(--accent-red);
+  box-shadow: 0 0 10px var(--accent-red);
+  border-radius: 2px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* Native dropdown options default to white-on-white on dark themes — force dark. */
+select {
+  color: var(--text-primary);
+}
+select option {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-red);
+}
+
+/* App shell (ported from the old App.jsx wrapper) */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+.main-content {
+  flex-grow: 1;
+  padding-top: 80px; /* accounts for the fixed navbar */
+}
+
+/* 3. Helper/Utility Classes */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.text-gradient-red {
+  background: linear-gradient(135deg, #ffffff 30%, var(--accent-red) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #ffffff 40%, var(--accent-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--button-radius);
+  cursor: pointer;
+  transition: var(--transition-medium);
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  background: var(--accent-red);
+  color: var(--text-primary);
+  box-shadow: 0 4px 15px var(--accent-red-glow);
+}
+.btn-primary:hover {
+  background: var(--accent-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 31, 41, 0.6);
+}
+
+.btn-outline {
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+}
+.btn-outline:hover {
+  border-color: var(--accent-red);
+  background: rgba(229, 9, 20, 0.05);
+  box-shadow: 0 0 15px var(--accent-red-glow);
+  transform: translateY(-2px);
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
+  border-radius: var(--card-radius);
+}
+
+/* Micro-animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulseRed {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--accent-red-glow);
+  }
+  50% {
+    box-shadow: 0 0 25px var(--accent-red);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s var(--transition-medium) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* 4. Layout Specific Elements */
+section {
+  padding: 5rem 0;
+  position: relative;
+}
+
+.bg-hero {
+  background: radial-gradient(circle at 70% 30%, rgba(229, 9, 20, 0.15) 0%, rgba(11, 12, 16, 1) 70%);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
