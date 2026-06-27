@@ -26,6 +26,8 @@ const AdminDashboard = () => {
   const [orders, setOrders] = useState([]);
   const [customers, setCustomers] = useState([]);
   const [loadingData, setLoadingData] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [uploadError, setUploadError] = useState(null);
 
   // CRUD Form states
   const [editingItem, setEditingItem] = useState(null); // holds the product being edited
@@ -84,8 +86,32 @@ const AdminDashboard = () => {
   };
 
   // Product CRUD Handlers
+  // Upload a product image file from the admin's device.
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadError(null);
+    setUploadingImage(true);
+    try {
+      const fd = new FormData();
+      fd.append('file', file);
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Upload failed');
+      setProductForm((f) => ({ ...f, imageUrl: data.url }));
+    } catch (err) {
+      setUploadError(err.message);
+    } finally {
+      setUploadingImage(false);
+    }
+  };
+
   const handleProductSubmit = async (e) => {
     e.preventDefault();
+    if (!productForm.imageUrl) {
+      alert('Please upload a product image.');
+      return;
+    }
     const url = editingItem ? `/api/products/${editingItem._id}` : '/api/products';
     const method = editingItem ? 'PUT' : 'POST';
 
@@ -512,14 +538,23 @@ const AdminDashboard = () => {
                     </div>
 
                     <div className="form-group">
-                      <label>Image URL *</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Paste image address URL"
-                        value={productForm.imageUrl}
-                        onChange={(e) => setProductForm({ ...productForm, imageUrl: e.target.value })}
-                      />
+                      <label>Product Image *</label>
+                      <div className="image-upload">
+                        {productForm.imageUrl && (
+                          <div className="image-preview">
+                            <img src={productForm.imageUrl} alt="Product preview" />
+                          </div>
+                        )}
+                        <label className="upload-dropzone">
+                          <input type="file" accept="image/*" onChange={handleImageUpload} hidden />
+                          {uploadingImage
+                            ? 'Uploading…'
+                            : productForm.imageUrl
+                              ? 'Change image'
+                              : 'Click to upload an image from your device'}
+                        </label>
+                        {uploadError && <span className="upload-error">{uploadError}</span>}
+                      </div>
                     </div>
 
                     <div className="form-group">
@@ -1120,7 +1155,25 @@ const AdminDashboard = () => {
           color: var(--text-secondary);
           cursor: pointer;
         }
-        
+
+        /* Image upload control */
+        .image-upload { display: flex; flex-direction: column; gap: 0.8rem; }
+        .image-preview {
+          width: 130px; height: 130px; border-radius: 10px;
+          background: radial-gradient(circle, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+          border: 1px solid var(--border-color);
+          display: flex; align-items: center; justify-content: center; padding: 0.6rem;
+        }
+        .image-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .upload-dropzone {
+          display: flex; align-items: center; justify-content: center; text-align: center;
+          padding: 1.1rem 1rem; border: 1px dashed var(--border-color); border-radius: 10px;
+          background: var(--bg-tertiary); color: var(--text-secondary);
+          font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: var(--transition-fast);
+        }
+        .upload-dropzone:hover { border-color: var(--accent-red); color: var(--text-primary); }
+        .upload-error { color: #ff6b71; font-size: 0.85rem; }
+
         /* Inquiries Tab Inbox */
         .inquiries-list {
           display: flex;

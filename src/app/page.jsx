@@ -59,7 +59,7 @@ const Home = () => {
             <Link href="/products" className="btn-products-exact hero-cta">DISCOVER THE RANGE</Link>
           </div>
           <div className="hero-cans">
-            <img className="hero-can hero-can-back" src="/Images/HELL_Carnival_ED_Cotton_Candy_2026_HU_Packshot_01.png.png" alt="HELL Cotton Candy" />
+            <img className="hero-can hero-can-back" src="/Images/ClassicHell.png" alt="HELL Cotton Candy" />
             <img className="hero-can hero-can-front" src="/Images/hell-helloween-classic.png" alt="HELL Helloween Classic Limited Edition" />
           </div>
         </div>
@@ -190,10 +190,10 @@ const Home = () => {
         .btn-products-exact:hover { background-color: var(--accent-red-hover); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(255,31,41,0.6); }
         .hero-cans { position: relative; height: clamp(360px, 48vw, 540px); display: flex; align-items: center; justify-content: center; }
         .hero-can { position: absolute; height: 100%; object-fit: contain; filter: drop-shadow(0 30px 50px rgba(0,0,0,0.6)); }
-        .hero-can-back { height: 78%; transform: translateX(34%) rotate(10deg); opacity: 0.92; animation: heroUp 1s .15s both, floatB 7s ease-in-out infinite; }
-        .hero-can-front { transform: translateX(-12%) rotate(-6deg); animation: heroUp 1s .25s both, floatF 5.5s ease-in-out infinite; }
-        @keyframes floatF { 0%,100%{ transform: translateX(-12%) translateY(0) rotate(-6deg);} 50%{ transform: translateX(-12%) translateY(-18px) rotate(-6deg);} }
-        @keyframes floatB { 0%,100%{ transform: translateX(34%) translateY(0) rotate(10deg);} 50%{ transform: translateX(34%) translateY(14px) rotate(10deg);} }
+        .hero-can-back { height: 74%; transform: translateX(20%) rotate(8deg); opacity: 0.9; animation: heroUp 1s .15s both, floatB 7s ease-in-out infinite; }
+        .hero-can-front { transform: translateX(-6%) rotate(-6deg); animation: heroUp 1s .25s both, floatF 5.5s ease-in-out infinite; }
+        @keyframes floatF { 0%,100%{ transform: translateX(-6%) translateY(0) rotate(-6deg);} 50%{ transform: translateX(-6%) translateY(-18px) rotate(-6deg);} }
+        @keyframes floatB { 0%,100%{ transform: translateX(20%) translateY(0) rotate(8deg);} 50%{ transform: translateX(20%) translateY(14px) rotate(8deg);} }
         .hero-brand-lockup { position: absolute; right: clamp(1.5rem, 5vw, 4rem); bottom: clamp(1.5rem, 4vw, 2.5rem); z-index: 3; display: flex; flex-direction: column; gap: 0.3rem; opacity: 0.85; animation: fadeInUp 0.9s ease; }
         @media (max-width: 860px) { .hero-brand-lockup { display: none; } }
         .lockup-logo-img { height: 54px; width: auto; display: block; }

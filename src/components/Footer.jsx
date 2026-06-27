@@ -35,9 +35,9 @@ const Footer = () => {
         <div className="footer-contact">
           <h3>Contact Info</h3>
           <ul className="contact-list">
-            <li><MapPin size={16} className="contact-icon" /><span>HELL ENERGY India, Mumbai, MH</span></li>
-            <li><Phone size={16} className="contact-icon" /><span>+91 22 4567 8910</span></li>
-            <li><Mail size={16} className="contact-icon" /><span>info@hellenergy.in</span></li>
+            <li><MapPin size={16} className="contact-icon" /><span>Plasto Touch Industries, Meerut , UP</span></li>
+            <li><Phone size={16} className="contact-icon" /><span>+91 7500266869</span></li>
+            <li><Mail size={16} className="contact-icon" /><span>care@helloween@gmail.com</span></li>
           </ul>
         </div>
       </div>

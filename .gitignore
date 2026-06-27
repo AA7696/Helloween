@@ -21,6 +21,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# admin-uploaded product images (runtime user content)
+/public/Images/uploads/
+
 # env files — never commit secrets (Mongo URI, JWT secret, Razorpay keys)
 .env
 .env.*
