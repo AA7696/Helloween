@@ -38,6 +38,8 @@ const AdminDashboard = () => {
     name: '',
     category: 'Energy Drink',
     caffeine: '32 mg/100 ml',
+    price: 120,
+    stock: 100,
     vitamins: 'B2, B3, B5, B6, B12',
     description: '',
     imageUrl: '',
@@ -149,6 +151,8 @@ const AdminDashboard = () => {
       name: prod.name,
       category: prod.category,
       caffeine: prod.caffeine,
+      price: prod.price,
+      stock: prod.stock,
       vitamins: prod.vitamins.join(', '),
       description: prod.description,
       imageUrl: prod.imageUrl,
@@ -176,6 +180,8 @@ const AdminDashboard = () => {
       name: '',
       category: 'Energy Drink',
       caffeine: '32 mg/100 ml',
+      price: 120,
+      stock: 100,
       vitamins: 'B2, B3, B5, B6, B12',
       description: '',
       imageUrl: '',
@@ -512,6 +518,7 @@ const AdminDashboard = () => {
                         >
                           <option value="Energy Drink">Energy Drink</option>
                           <option value="Functional Drink">Functional Drink</option>
+                          <option value="Tonic Water">Tonic Water</option>
                         </select>
                       </div>
                     </div>
@@ -533,6 +540,32 @@ const AdminDashboard = () => {
                           placeholder="e.g. B2, B3, B5, B6"
                           value={productForm.vitamins}
                           onChange={(e) => setProductForm({ ...productForm, vitamins: e.target.value })}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-row-2">
+                      <div className="form-group">
+                        <label>Price (₹) *</label>
+                        <input
+                          type="number"
+                          required
+                          min="0"
+                          step="1"
+                          placeholder="e.g. 120"
+                          value={productForm.price}
+                          onChange={(e) => setProductForm({ ...productForm, price: e.target.value })}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label>Stock</label>
+                        <input
+                          type="number"
+                          min="0"
+                          step="1"
+                          placeholder="e.g. 100"
+                          value={productForm.stock}
+                          onChange={(e) => setProductForm({ ...productForm, stock: e.target.value })}
                         />
                       </div>
                     </div>

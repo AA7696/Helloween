@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const ProductSchema = new mongoose.Schema({
   name: { type: String, required: true, trim: true },
-  category: { type: String, required: true, enum: ['Energy Drink', 'Functional Drink'] },
+  category: { type: String, required: true, enum: ['Energy Drink', 'Functional Drink', 'Tonic Water'] },
   caffeine: { type: String, default: '32 mg/100 ml' },
   price: { type: Number, required: true, default: 120, min: 0 },
   stock: { type: Number, default: 100, min: 0 },

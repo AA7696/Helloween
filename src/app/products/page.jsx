@@ -88,7 +88,7 @@ const Products = () => {
     setFilteredProducts(result);
   }, [selectedCategory, searchQuery, sortBy, products]);
 
-  const categories = ['All', 'Energy Drink', 'Functional Drink'];
+  const categories = ['All', 'Energy Drink', 'Functional Drink', 'Tonic Water'];
 
   // Vitamin descriptions lookup
   const getVitaminDesc = (vit) => {

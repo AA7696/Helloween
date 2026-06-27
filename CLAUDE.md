@@ -49,7 +49,7 @@ Design system + CSS variables (dark/neon-red/gold palette) in [src/app/globals.c
 ## Config & conventions
 
 - `.env.local`: `MONGO_URI`, `JWT_SECRET`, `ADMIN_USERNAME`/`ADMIN_PASSWORD`, `RAZORPAY_KEY_ID`/`RAZORPAY_KEY_SECRET`.
-- Product `category` enum: `'Energy Drink'`, `'Functional Drink'`. Inquiry `status`: `'Unread' | 'Read' | 'Replied'`. Order `orderStatus`: `Processing | Shipped | Delivered | Cancelled`.
+- Product `category` enum: `'Energy Drink'`, `'Functional Drink'`, `'Tonic Water'`. Inquiry `status`: `'Unread' | 'Read' | 'Replied'`. Order `orderStatus`: `Processing | Shipped | Delivered | Cancelled`.
 - Catalog single source of truth: [src/lib/seedData.js](src/lib/seedData.js) (`defaultProducts`). Edit there, then `npm run seed`.
 - Product images live in [public/Images/](public/Images/), referenced by root-relative URL (`/Images/<file>`). Filenames carry double extensions (e.g. `.png.png`). Brand logo is the transparent `Helloween-removebg-preview.png`.
 - `next.config.mjs` lists `mongoose`/`bcryptjs` under `experimental.serverComponentsExternalPackages`. ESLint relaxes `no-img-element` / `no-unescaped-entities` (we use `<img>` for transparent packshots intentionally).
